@@ -1,20 +1,32 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 
 /**
- * Created by Zachary Clauson on 10/7/2017.
+ * Created by Zachary Clauson on 10/8/2017.
  */
-
+@TeleOp(name = "ManualOP", group = "ManualOP")
 public class ManualOP extends OpMode {
-
+    //instantiating MasterOp class
+    MasterOp mo= new MasterOp();
     @Override
     public void init() {
-
+        //initializing all the hardware
+        mo.init(hardwareMap);
     }
 
     @Override
     public void loop() {
+        //setting the power equal to the float of the sticks
+    double rpower=-gamepad1.right_stick_y;
+    double lpower=-gamepad1.left_stick_y;
 
+        //set right motors to right power and set left motors to left power
+        mo.motor1.setPower(rpower);
+        mo.motor2.setPower(lpower);
+        mo.motor3.setPower(rpower);
+        mo.motor4.setPower(lpower);
     }
 }
