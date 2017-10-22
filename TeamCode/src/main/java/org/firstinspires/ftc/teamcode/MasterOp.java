@@ -60,6 +60,18 @@ public class MasterOp {
         motor1.setPower(right);
         motor2.setPower(left);
     }
+    public void shutdownAllMotors(){
+        motor1.setPower(0);
+        motor2.setPower(0);
+        motor3.setPower(0);
+        motor4.setPower(0);
+    }
+    public void resetEncoders(){
+        motor1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motor2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motor3.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motor4.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+    }
 
 
 

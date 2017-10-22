@@ -1,7 +1,9 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.Manual;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+
+import org.firstinspires.ftc.teamcode.MasterOp;
 
 /**
  * Created by Zachary Clauson on 10/18/2017.
@@ -38,13 +40,13 @@ public class MecanumManual2 extends OpMode {
         */
 
         float g1LeftY=-gamepad1.left_stick_y;
-        float g1LeftX= gamepad1.left_stick_x;
-        float g1RightX= gamepad1.right_stick_y;
+        float g1RightX= gamepad1.right_stick_x;
+        float g1RightY= gamepad1.right_stick_y;
 
-        double  FL= -g1LeftY -g1LeftX -g1RightX;
-        double  BR=  g1LeftY - g1LeftX - g1RightX;
-        double  FR=  g1LeftY + g1LeftX -g1RightX;
-        double  BL= -g1LeftY + g1LeftX -g1RightX;
+        double  FL= -g1LeftY -g1RightX -g1RightY;
+        double  BR=  g1LeftY - g1RightX - g1RightY;
+        double  FR=  g1LeftY + g1RightX -g1RightY;
+        double  BL= -g1LeftY + g1RightX -g1RightY;
 
         mo.motor1.setPower(BL);
         mo.motor2.setPower(BR);
@@ -52,7 +54,7 @@ public class MecanumManual2 extends OpMode {
         mo.motor4.setPower(FR);
 
         telemetry.addData("LeftY:", gamepad1.left_stick_y);
-        telemetry.addData("LeftX", gamepad1.left_stick_x);
+        telemetry.addData("RightX", gamepad1.right_stick_x);
         telemetry.addData("RightY", gamepad1.right_stick_y);
 
 
