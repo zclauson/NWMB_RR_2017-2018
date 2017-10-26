@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.Manual;
 
+import android.util.Range;
+
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -22,8 +24,10 @@ public class ManualOP extends OpMode {
     @Override
     public void loop() {
         //setting the power equal to the float of the sticks
-    double rpower=-gamepad1.right_stick_y;
-    double lpower=-gamepad1.left_stick_y;
+        double rpower=-gamepad1.right_stick_y;
+        double lpower=-gamepad1.left_stick_y;
+
+
 
         //set right motors to right power and set left motors to left power
         mo.motor1.setPower(rpower);
