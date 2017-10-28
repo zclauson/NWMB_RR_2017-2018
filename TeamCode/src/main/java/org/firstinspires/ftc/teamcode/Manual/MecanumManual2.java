@@ -61,9 +61,27 @@ public class MecanumManual2 extends OpMode {
         mo.motor3.setPower(FL);
         mo.motor4.setPower(FR);
 
-        telemetry.addData("LeftY:", gamepad1.left_stick_y);
-        telemetry.addData("RightX", gamepad1.right_stick_x);
-        telemetry.addData("RightY", gamepad1.right_stick_y);
+        if (gamepad1.right_trigger > .1){
+            mo.motor5.setPower(.4);
+        }
+        if(gamepad1.left_trigger > .1){
+            mo.motor5.setPower(-.4);
+        }
+        if (gamepad1.right_bumper){
+            mo.motor6.setPower(.4);
+        }
+        if (gamepad1.left_bumper){
+            mo.motor6.setPower(-.4);
+        }
+
+
+        telemetry.addData("red: ",mo.color1.red());
+        telemetry.addData("blue: ",mo.color1.blue());
+        telemetry.addData("motor1: ", mo.motor1.getCurrentPosition());
+        telemetry.addData("motor2: ", mo.motor2.getCurrentPosition());
+        telemetry.addData("motor3: ", mo.motor3.getCurrentPosition());
+        telemetry.addData("motor4: ", mo.motor4.getCurrentPosition());
+
 
 
 
