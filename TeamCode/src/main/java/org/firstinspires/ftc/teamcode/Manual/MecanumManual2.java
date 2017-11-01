@@ -44,10 +44,10 @@ public class MecanumManual2 extends OpMode {
         float g1RightX= gamepad1.right_stick_x;
         float g1RightY= gamepad1.right_stick_y;
 
-        float  FL= -g1LeftY -g1RightX -g1RightY;
-        float  BR=  g1LeftY - g1RightX - g1RightY;
-        float  FR=  g1LeftY + g1RightX -g1RightY;
-        float  BL= -g1LeftY + g1RightX -g1RightY;
+        double  FL= -g1LeftY -g1RightX -g1RightY;
+        double  BR=  g1LeftY - g1RightX - g1RightY;
+        double  FR=  g1LeftY + g1RightX -g1RightY;
+        double  BL= -g1LeftY + g1RightX -g1RightY;
 
         //this makes it to where the speeds cant get below -1 or above 1
         Range.clip(FL,-1,1);
@@ -61,17 +61,41 @@ public class MecanumManual2 extends OpMode {
         mo.motor3.setPower(FL);
         mo.motor4.setPower(FR);
 
-        if (gamepad1.right_trigger > .1){
-            mo.motor5.setPower(.4);
+        if (gamepad1.right_trigger > .5){
+            mo.motor5.setPower(.6);
         }
-        if(gamepad1.left_trigger > .1){
-            mo.motor5.setPower(-.4);
+        else{
+            mo.motor5.setPower(0);
+        }
+        if(gamepad1.left_trigger > .5){
+            mo.motor5.setPower(-.6);
+        }
+        else{
+            mo.motor5.setPower(0);
         }
         if (gamepad1.right_bumper){
             mo.motor6.setPower(.4);
         }
+        else{
+            mo.motor6.setPower(0);
+        }
         if (gamepad1.left_bumper){
             mo.motor6.setPower(-.4);
+        }
+        else{
+            mo.motor6.setPower(0);
+        }
+        if (gamepad1.a){
+            mo.servo1.setPosition(1);
+        }
+        if (gamepad1.b){
+            mo.servo1.setPosition(.89);
+        }
+        if (gamepad1.x){
+            mo.servo2.setPosition(.5);
+        }
+        if (gamepad1.y){
+            mo.servo2.setPosition(1);
         }
 
 
@@ -81,6 +105,8 @@ public class MecanumManual2 extends OpMode {
         telemetry.addData("motor2: ", mo.motor2.getCurrentPosition());
         telemetry.addData("motor3: ", mo.motor3.getCurrentPosition());
         telemetry.addData("motor4: ", mo.motor4.getCurrentPosition());
+        telemetry.addData("servo1: ", mo.servo1.getPosition());
+        telemetry.addData("servo2: ", mo.servo2.getPosition());
 
 
 

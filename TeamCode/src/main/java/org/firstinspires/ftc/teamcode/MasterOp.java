@@ -14,26 +14,26 @@ import com.qualcomm.robotcore.util.Hardware;
  */
 @Disabled
 public class MasterOp {
-    public DcMotor motor1;
-    public DcMotor motor2;
-    public DcMotor motor3;
-    public DcMotor motor4;
-    public DcMotor motor5;
-    public DcMotor motor6;
+    public DcMotor motor1=null;
+    public DcMotor motor2=null;
+    public DcMotor motor3=null;
+    public DcMotor motor4=null;
+    public DcMotor motor5=null;
+    public DcMotor motor6=null;
 
-    public Servo servo1;
-    public Servo servo2;
+    public Servo servo1=null;
+    public Servo servo2=null;
 
-    public ColorSensor color1;
+    public ColorSensor color1=null;
 
-    public HardwareMap HM;
+    public HardwareMap HM=null;
 
-    public void AddMotor(DcMotor motor, String motorname){
+    public void AddMotor(DcMotor m, String motorname){
         //method for adding motor
-        motor= HM.dcMotor.get(motorname);
-        motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        motor.setPower(0);
-        motor.setDirection(DcMotorSimple.Direction.FORWARD);
+        m= HM.dcMotor.get(motorname);
+        m.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        m.setPower(0);
+        m.setDirection(DcMotorSimple.Direction.FORWARD);
     }
     public void init(HardwareMap hm){
         /*this is saying the Hardware map, made at the top equals any new hardware map
@@ -52,27 +52,48 @@ public class MasterOp {
         motor1.setDirection(DcMotorSimple.Direction.REVERSE);
 
         //motor2 = rightRear
-        AddMotor(motor2,"motor2");
+//        AddMotor(motor2,"motor2");
+        motor2 =HM.dcMotor.get("motor2");
+        motor2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        motor2.setPower(0);
+        motor2.setDirection(DcMotorSimple.Direction.FORWARD);
 
         //motor3 = leftFront
-        AddMotor(motor3,"motor3");
+//        AddMotor(motor3,"motor3");
+        motor3 =HM.dcMotor.get("motor3");
+        motor3.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        motor3.setPower(0);
+        motor3.setDirection(DcMotorSimple.Direction.REVERSE);
 
         //motor4 = rightFront
-        AddMotor(motor4,"motor4");
-
+//        AddMotor(motor4,"motor4");
+        motor4 =HM.dcMotor.get("motor4");
+        motor4.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        motor4.setPower(0);
+        motor4.setDirection(DcMotorSimple.Direction.FORWARD);
         //motor5 = bottomArm
-        AddMotor(motor5,"motor5");
+//        AddMotor(motor5,"motor5");
+        motor5 =HM.dcMotor.get("motor5");
+        motor5.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        motor5.setPower(0);
+        motor5.setDirection(DcMotorSimple.Direction.REVERSE);
 
         //motor6 = topArm
-        AddMotor(motor6,"motor6");
+//        AddMotor(motor6,"motor6");
+        motor6 =HM.dcMotor.get("motor6");
+        motor6.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        motor6.setPower(0);
+        motor6.setDirection(DcMotorSimple.Direction.FORWARD);
+
+
 
         //servo1=claw
-        servo1= HM.servo.get("servo");
-        servo1.setPosition(0);
+        servo1= HM.servo.get("servo1");
+        servo1.setPosition(1);
 
         //servo2= colorSensorArm
         servo2 = HM.servo.get("servo2");
-        servo2.setPosition(0);
+        servo2.setPosition(1);
 
         //color1 = colorSensor
         color1=HM.colorSensor.get("color1");
