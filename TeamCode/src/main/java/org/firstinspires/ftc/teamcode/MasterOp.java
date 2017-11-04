@@ -15,19 +15,19 @@ import com.qualcomm.robotcore.util.Hardware;
  */
 @Disabled
 public class MasterOp {
-    public DcMotor motor1=null;
-    public DcMotor motor2=null;
-    public DcMotor motor3=null;
-    public DcMotor motor4=null;
-    public DcMotor motor5=null;
-    public DcMotor motor6=null;
+    public DcMotor motor1 = null;
+    public DcMotor motor2 = null;
+    public DcMotor motor3 = null;
+    public DcMotor motor4 = null;
+    public DcMotor motor5 = null;
+    public DcMotor motor6 = null;
 
-    public Servo servo1=null;
-    public Servo servo2=null;
+    public Servo servo1 = null;
+    public Servo servo2 = null;
 
-    public ColorSensor color1=null;
+    public ColorSensor color1 = null;
 
-    public HardwareMap HM=null;
+    public HardwareMap HM = null;
 
     /*
                         Front
@@ -39,24 +39,25 @@ motor3   _______________________________  motor4
         |                               |
         |                               |
         |               back            |
-motor1  |_______________________________|motor2
+motor1  |_______________________________| motor2
 
     */
 
 
     public int v_state;
 
-    public void AddMotor(DcMotor m, String motorname){
+    public void AddMotor(DcMotor m, String motorname) {
         //method for adding motor
-        m= HM.dcMotor.get(motorname);
+        m = HM.dcMotor.get(motorname);
         m.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         m.setPower(0);
         m.setDirection(DcMotorSimple.Direction.FORWARD);
     }
-    public void init(HardwareMap hm){
+
+    public void init(HardwareMap hm) {
         /*this is saying the Hardware map, made at the top equals any new hardware map
          entered*/
-        HM=hm;
+        HM = hm;
         //configuring motors
 
         //name of motors in configuration files
@@ -71,41 +72,40 @@ motor1  |_______________________________|motor2
 
         //motor2 = rightRear
 //        AddMotor(motor2,"motor2");
-        motor2 =HM.dcMotor.get("motor2");
+        motor2 = HM.dcMotor.get("motor2");
         motor2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motor2.setPower(0);
         motor2.setDirection(DcMotorSimple.Direction.REVERSE);
 
         //motor3 = leftFront
 //        AddMotor(motor3,"motor3");
-        motor3 =HM.dcMotor.get("motor3");
+        motor3 = HM.dcMotor.get("motor3");
         motor3.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motor3.setPower(0);
         motor3.setDirection(DcMotorSimple.Direction.FORWARD);
 
         //motor4 = rightFront
 //        AddMotor(motor4,"motor4");
-        motor4 =HM.dcMotor.get("motor4");
+        motor4 = HM.dcMotor.get("motor4");
         motor4.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motor4.setPower(0);
         motor4.setDirection(DcMotorSimple.Direction.REVERSE);
 //        AddMotor(motor5,"motor5");
-        motor5 =HM.dcMotor.get("motor5");
+        motor5 = HM.dcMotor.get("motor5");
         motor5.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motor5.setPower(0);
         motor5.setDirection(DcMotorSimple.Direction.REVERSE);
 
         //motor6 = topArm
 //        AddMotor(motor6,"motor6");
-        motor6 =HM.dcMotor.get("motor6");
+        motor6 = HM.dcMotor.get("motor6");
         motor6.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motor6.setPower(0);
         motor6.setDirection(DcMotorSimple.Direction.FORWARD);
 
 
-
         //servo1=claw
-        servo1= HM.servo.get("servo1");
+        servo1 = HM.servo.get("servo1");
         servo1.setPosition(1);
 
         //servo2= colorSensorArm
@@ -113,35 +113,60 @@ motor1  |_______________________________|motor2
         servo2.setPosition(1);
 
         //color1 = colorSensor
-        color1=HM.colorSensor.get("color1");
+        color1 = HM.colorSensor.get("color1");
         color1.enableLed(false);
     }
-    public void shutdownAllMotors(){
+
+    public void shutdownAllMotors() {
         motor1.setPower(0);
         motor2.setPower(0);
         motor3.setPower(0);
         motor4.setPower(0);
     }
-    public void resetEncoders(){
+
+    public void resetEncoders() {
         motor1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motor2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motor3.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motor4.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
-    public void PowerForward(int motorcount){
-        motor1.setPower(1);
-        motor2.setPower(1);
-        motor3.setPower(1);
-        motor4.setPower(1);
-         if (motor1.getCurrentPosition() > motorcount){
-             shutdownAllMotors();
-             resetEncoders();
-             v_state++;
-         }
+
+    public void PowerForB(double motorspeed, int motorcount) {
+        motor1.setPower(motorspeed);
+        motor2.setPower(motorspeed);
+        motor3.setPower(motorspeed);
+        motor4.setPower(motorspeed);
+        if (motor1.getCurrentPosition() > motorcount) {
+            shutdownAllMotors();
+            resetEncoders();
+            v_state++;
+        }
 
     }
 
 
+    public void PowerR(double motorspeed, int motorcount) {
+        motor1.setPower(motorspeed);
+        motor2.setPower(-motorspeed);
+        motor3.setPower(-motorspeed);
+        motor4.setPower(motorspeed);
+        if (motor1.getCurrentPosition() > motorcount) {
+            shutdownAllMotors();
+            resetEncoders();
+            v_state++;
+        }
+    }
 
+    public void PowerL(double motorspeed, int motorcount) {
+        motor1.setPower(-motorspeed);
+        motor2.setPower(motorspeed);
+        motor3.setPower(motorspeed);
+        motor4.setPower(-motorspeed);
+        if (motor1.getCurrentPosition() > motorcount) {
+            shutdownAllMotors();
+            resetEncoders();
+            v_state++;
 
+        }
+    }
 }
