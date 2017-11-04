@@ -20,7 +20,12 @@ public class Blue1 extends OpMode{
     public void loop() {
 
         switch (v_state){
+            case 0:
+                mo.resetEncoders();
+                mo.shutdownAllMotors();
 
+                break;
+            case 1:
         }
 
     }

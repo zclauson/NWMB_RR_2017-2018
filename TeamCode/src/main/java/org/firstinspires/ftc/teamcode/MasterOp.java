@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.SyncdDevice;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -28,6 +29,23 @@ public class MasterOp {
 
     public HardwareMap HM=null;
 
+    /*
+                        Front
+motor3   _______________________________  motor4
+        |                               |
+        |                               |
+        |                               |
+        |               center          |
+        |                               |
+        |                               |
+        |               back            |
+motor1  |_______________________________|motor2
+
+    */
+
+
+    public int v_state;
+
     public void AddMotor(DcMotor m, String motorname){
         //method for adding motor
         m= HM.dcMotor.get(motorname);
@@ -49,29 +67,28 @@ public class MasterOp {
         //initializing the motor power when the init button is pushed on the phone
         motor1.setPower(0);
         //set motors direction
-        motor1.setDirection(DcMotorSimple.Direction.REVERSE);
+        motor1.setDirection(DcMotorSimple.Direction.FORWARD);
 
         //motor2 = rightRear
 //        AddMotor(motor2,"motor2");
         motor2 =HM.dcMotor.get("motor2");
         motor2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motor2.setPower(0);
-        motor2.setDirection(DcMotorSimple.Direction.FORWARD);
+        motor2.setDirection(DcMotorSimple.Direction.REVERSE);
 
         //motor3 = leftFront
 //        AddMotor(motor3,"motor3");
         motor3 =HM.dcMotor.get("motor3");
         motor3.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motor3.setPower(0);
-        motor3.setDirection(DcMotorSimple.Direction.REVERSE);
+        motor3.setDirection(DcMotorSimple.Direction.FORWARD);
 
         //motor4 = rightFront
 //        AddMotor(motor4,"motor4");
         motor4 =HM.dcMotor.get("motor4");
         motor4.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motor4.setPower(0);
-        motor4.setDirection(DcMotorSimple.Direction.FORWARD);
-        //motor5 = bottomArm
+        motor4.setDirection(DcMotorSimple.Direction.REVERSE);
 //        AddMotor(motor5,"motor5");
         motor5 =HM.dcMotor.get("motor5");
         motor5.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -99,11 +116,6 @@ public class MasterOp {
         color1=HM.colorSensor.get("color1");
         color1.enableLed(false);
     }
-    public void setpower(double right, double left){
-        //this is for autonomous, it sets motor 1 and 2's power
-        motor1.setPower(right);
-        motor2.setPower(left);
-    }
     public void shutdownAllMotors(){
         motor1.setPower(0);
         motor2.setPower(0);
@@ -115,6 +127,18 @@ public class MasterOp {
         motor2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motor3.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motor4.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+    }
+    public void PowerForward(int motorcount){
+        motor1.setPower(1);
+        motor2.setPower(1);
+        motor3.setPower(1);
+        motor4.setPower(1);
+         if (motor1.getCurrentPosition() > motorcount){
+             shutdownAllMotors();
+             resetEncoders();
+             v_state++;
+         }
+
     }
 
 

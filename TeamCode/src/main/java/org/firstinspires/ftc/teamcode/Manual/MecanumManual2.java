@@ -62,25 +62,25 @@ public class MecanumManual2 extends OpMode {
         mo.motor4.setPower(FR);
 
         if (gamepad1.right_trigger > .5){
-            mo.motor5.setPower(.6);
+            mo.motor5.setPower(1);
         }
         else{
             mo.motor5.setPower(0);
         }
         if(gamepad1.left_trigger > .5){
-            mo.motor5.setPower(-.6);
+            mo.motor5.setPower(-1);
         }
         else{
             mo.motor5.setPower(0);
         }
         if (gamepad1.right_bumper){
-            mo.motor6.setPower(.4);
+            mo.motor6.setPower(1);
         }
         else{
             mo.motor6.setPower(0);
         }
         if (gamepad1.left_bumper){
-            mo.motor6.setPower(-.4);
+            mo.motor6.setPower(-1);
         }
         else{
             mo.motor6.setPower(0);
@@ -89,7 +89,7 @@ public class MecanumManual2 extends OpMode {
             mo.servo1.setPosition(1);
         }
         if (gamepad1.b){
-            mo.servo1.setPosition(.89);
+            mo.servo1.setPosition(.80);
         }
         if (gamepad1.x){
             mo.servo2.setPosition(.5);
