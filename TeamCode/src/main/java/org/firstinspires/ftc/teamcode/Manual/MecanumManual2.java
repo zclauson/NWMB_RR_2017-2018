@@ -44,10 +44,10 @@ public class MecanumManual2 extends OpMode {
         float g1RightX= gamepad1.right_stick_x;
         float g1RightY= gamepad1.right_stick_y;
 
-        double  FL= -g1LeftY -g1RightX -g1RightY;
-        double  BR=  g1LeftY - g1RightX - g1RightY;
-        double  FR=  g1LeftY + g1RightX -g1RightY;
-        double  BL= -g1LeftY + g1RightX -g1RightY;
+        double  FL= -g1LeftY + g1RightX -g1RightY;
+        double  BR=  g1LeftY + g1RightX -g1RightY;
+        double  FR=  g1LeftY - g1RightX -g1RightY;
+        double  BL= -g1LeftY - g1RightX -g1RightY;
 
         //this makes it to where the speeds cant get below -1 or above 1
         Range.clip(FL,-1,1);
