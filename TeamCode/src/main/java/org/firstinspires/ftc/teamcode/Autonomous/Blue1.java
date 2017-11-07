@@ -26,6 +26,10 @@ public class Blue1 extends OpMode{
 
                 break;
             case 1:
+                mo.motor7.setPower(1);
+                if (mo.motor7.getCurrentPosition() > 100){
+
+                }
         }
 
     }

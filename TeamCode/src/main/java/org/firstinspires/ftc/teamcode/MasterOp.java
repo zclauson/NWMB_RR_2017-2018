@@ -20,7 +20,8 @@ public class MasterOp {
     public DcMotor motor3 = null;
     public DcMotor motor4 = null;
     public DcMotor motor5 = null;
-    public DcMotor motor6 = null;
+//    public DcMotor motor6 = null;
+    public DcMotor motor7 = null;
 
     public Servo servo1 = null;
     public Servo servo2 = null;
@@ -68,29 +69,30 @@ motor1  |_______________________________| motor2
         //initializing the motor power when the init button is pushed on the phone
         motor1.setPower(0);
         //set motors direction
-        motor1.setDirection(DcMotorSimple.Direction.FORWARD);
+        motor1.setDirection(DcMotorSimple.Direction.REVERSE);
 
         //motor2 = rightRear
 //        AddMotor(motor2,"motor2");
         motor2 = HM.dcMotor.get("motor2");
         motor2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motor2.setPower(0);
-        motor2.setDirection(DcMotorSimple.Direction.REVERSE);
+        motor2.setDirection(DcMotorSimple.Direction.FORWARD);
 
         //motor3 = leftFront
 //        AddMotor(motor3,"motor3");
         motor3 = HM.dcMotor.get("motor3");
         motor3.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motor3.setPower(0);
-        motor3.setDirection(DcMotorSimple.Direction.FORWARD);
+        motor3.setDirection(DcMotorSimple.Direction.REVERSE);
 
         //motor4 = rightFront
 //        AddMotor(motor4,"motor4");
         motor4 = HM.dcMotor.get("motor4");
         motor4.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motor4.setPower(0);
-        motor4.setDirection(DcMotorSimple.Direction.REVERSE);
-//        AddMotor(motor5,"motor5");
+        motor4.setDirection(DcMotorSimple.Direction.FORWARD);
+//       motor5= bottomArm
+//      AddMotor(motor5,"motor5");
         motor5 = HM.dcMotor.get("motor5");
         motor5.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         motor5.setPower(0);
@@ -98,11 +100,16 @@ motor1  |_______________________________| motor2
 
         //motor6 = topArm
 //        AddMotor(motor6,"motor6");
-        motor6 = HM.dcMotor.get("motor6");
-        motor6.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        motor6.setPower(0);
-        motor6.setDirection(DcMotorSimple.Direction.REVERSE);
+//        motor6 = HM.dcMotor.get("motor6");
+//        motor6.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//        motor6.setPower(0);
+//        motor6.setDirection(DcMotorSimple.Direction.REVERSE);
 
+        //motor7 = sensorArm
+        motor7 = HM.dcMotor.get("motor7");
+        motor7.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        motor7.setPower(0);
+        motor7.setDirection(DcMotorSimple.Direction.REVERSE);
 
         //servo1=claw
         servo1 = HM.servo.get("servo1");

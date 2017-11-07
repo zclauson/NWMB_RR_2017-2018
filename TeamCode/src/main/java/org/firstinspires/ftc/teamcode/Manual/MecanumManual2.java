@@ -44,10 +44,12 @@ public class MecanumManual2 extends OpMode {
         float g1RightX= gamepad1.right_stick_x;
         float g1RightY= gamepad1.right_stick_y;
 
-        double  FL= -g1LeftY + g1RightX -g1RightY;
-        double  BR=  g1LeftY + g1RightX -g1RightY;
-        double  FR=  g1LeftY - g1RightX -g1RightY;
-        double  BL= -g1LeftY - g1RightX -g1RightY;
+        float armpower = gamepad2.left_stick_y;
+
+        double  FL= -g1LeftY - g1RightX -g1RightY;
+        double  BR=  g1LeftY - g1RightX -g1RightY;
+        double  FR=  g1LeftY + g1RightX -g1RightY;
+        double  BL= -g1LeftY + g1RightX -g1RightY;
 
         //this makes it to where the speeds cant get below -1 or above 1
         Range.clip(FL,-1,1);
@@ -60,31 +62,16 @@ public class MecanumManual2 extends OpMode {
         mo.motor2.setPower(BR);
         mo.motor3.setPower(FL);
         mo.motor4.setPower(FR);
+        mo.motor5.setPower(armpower);
 
-        if (gamepad1.right_trigger > .5){
+        if (gamepad1.right_bumper){
             mo.motor5.setPower(1);
         }
-        else{
-            mo.motor5.setPower(0);
-        }
-        if(gamepad1.left_trigger > .5){
+
+        if(gamepad1.left_bumper){
             mo.motor5.setPower(-1);
         }
-        else{
-            mo.motor5.setPower(0);
-        }
-        if (gamepad1.right_bumper){
-            mo.motor6.setPower(1);
-        }
-        else{
-            mo.motor6.setPower(0);
-        }
-        if (gamepad1.left_bumper){
-            mo.motor6.setPower(-1);
-        }
-        else{
-            mo.motor6.setPower(0);
-        }
+
         if (gamepad1.a){
             mo.servo1.setPosition(1);
         }
