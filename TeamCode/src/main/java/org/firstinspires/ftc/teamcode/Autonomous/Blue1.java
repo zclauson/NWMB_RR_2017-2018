@@ -28,8 +28,12 @@ public class Blue1 extends OpMode{
             case 1:
                 mo.motor7.setPower(1);
                 if (mo.motor7.getCurrentPosition() > 100){
-
+                    mo.shutdownAllMotors();
+                    mo.resetEncoders();
+                    mo.v_state++;
                 }
+            case 2:
+                mo.servo2.setPosition(.80);
         }
 
     }

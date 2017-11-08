@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.Manual;
 
+import android.view.Display;
+
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.Range;
@@ -45,6 +47,7 @@ public class MecanumManual2 extends OpMode {
         float g1RightY= gamepad1.right_stick_y;
 
         float armpower = gamepad2.left_stick_y;
+        float colorArm= gamepad2.right_stick_y;
 
         double  FL= -g1LeftY - g1RightX -g1RightY;
         double  BR=  g1LeftY - g1RightX -g1RightY;
@@ -63,27 +66,21 @@ public class MecanumManual2 extends OpMode {
         mo.motor3.setPower(FL);
         mo.motor4.setPower(FR);
         mo.motor5.setPower(armpower);
+        mo.motor7.setPower(colorArm);
 
-        if (gamepad1.right_bumper){
-            mo.motor5.setPower(1);
-        }
-
-        if(gamepad1.left_bumper){
-            mo.motor5.setPower(-1);
-        }
-
-        if (gamepad1.a){
+        if (gamepad2.a){
             mo.servo1.setPosition(1);
         }
-        if (gamepad1.b){
-            mo.servo1.setPosition(.80);
+        if (gamepad2.b){
+            mo.servo1.setPosition(.50);
         }
-        if (gamepad1.x){
+        if (gamepad2.x){
             mo.servo2.setPosition(.5);
         }
-        if (gamepad1.y){
+        if (gamepad2.y){
             mo.servo2.setPosition(1);
         }
+
 
 
         telemetry.addData("red: ",mo.color1.red());
@@ -92,9 +89,10 @@ public class MecanumManual2 extends OpMode {
         telemetry.addData("motor2: ", mo.motor2.getCurrentPosition());
         telemetry.addData("motor3: ", mo.motor3.getCurrentPosition());
         telemetry.addData("motor4: ", mo.motor4.getCurrentPosition());
-        telemetry.addData("servo1: ", mo.servo1.getPosition());
-        telemetry.addData("servo2: ", mo.servo2.getPosition());
-
+        telemetry.addData("clawServo: ", mo.servo1.getPosition());
+        telemetry.addData("colorServo: ", mo.servo2.getPosition());
+        telemetry.addData("colorArm: ", mo.motor7.getCurrentPosition());
+        telemetry.addData("armMotor: ", mo.motor5.getCurrentPosition());
 
 
 
