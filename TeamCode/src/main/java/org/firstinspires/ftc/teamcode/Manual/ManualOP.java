@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.Manual;
 
 import android.util.Range;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -12,6 +13,7 @@ import org.firstinspires.ftc.teamcode.MasterOp;
  * Created by Zachary Clauson on 10/8/2017.
  */
 @TeleOp(name = "ManualOP", group = "ManualOP")
+@Disabled
 public class ManualOP extends OpMode {
     //instantiating MasterOp class
     MasterOp mo= new MasterOp();

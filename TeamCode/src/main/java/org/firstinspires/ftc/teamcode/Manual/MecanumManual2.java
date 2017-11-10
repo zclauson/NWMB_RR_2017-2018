@@ -42,14 +42,12 @@ public class MecanumManual2 extends OpMode {
 		float BackLeft = -gamepad1LeftY + gamepad1LeftX - gamepad1RightX;
         */
 
-        float g1LeftY=-gamepad1.left_stick_y;
-        float g1RightX= gamepad1.right_stick_x;
-        float g1RightY= gamepad1.right_stick_y;
 
-        float armpower = gamepad2.left_stick_y;
-        float colorArm= gamepad2.right_stick_y;
 
-        double  FL= -g1LeftY - g1RightX -g1RightY;
+
+//        float colorArm= gamepad2.right_stick_y;
+
+        /*double  FL= -g1LeftY - g1RightX -g1RightY;
         double  BR=  g1LeftY - g1RightX -g1RightY;
         double  FR=  g1LeftY + g1RightX -g1RightY;
         double  BL= -g1LeftY + g1RightX -g1RightY;
@@ -67,6 +65,31 @@ public class MecanumManual2 extends OpMode {
         mo.motor4.setPower(FR);
         mo.motor5.setPower(armpower);
         mo.motor7.setPower(colorArm);
+        */
+        float g1LeftY= -gamepad1.left_stick_y;
+        float g1RightX= gamepad1.right_stick_x;
+        float g1RightY= gamepad1.right_stick_y;
+
+        float armpower = -gamepad2.right_stick_y;
+
+        float  FL= -g1LeftY - g1RightX -g1RightY;
+        float  BR=  g1LeftY - g1RightX -g1RightY;
+        float  FR=  g1LeftY + g1RightX -g1RightY;
+        float  BL= -g1LeftY + g1RightX -g1RightY;
+
+        //this makes it to where the speeds cant get below -1 or above 1
+        Range.clip(FL,-1,1);
+        Range.clip(BL,-1,1);
+        Range.clip(FR,-1,1);
+        Range.clip(BR,-1,1);
+
+
+        mo.motor1.setPower(BL);
+        mo.motor2.setPower(BR);
+        mo.motor3.setPower(FL);
+        mo.motor4.setPower(FR);
+        mo.motor5.setPower(armpower);
+//        mo.motor7.setPower(colorArm);
 
         if (gamepad2.a){
             mo.servo1.setPosition(1);
@@ -80,15 +103,18 @@ public class MecanumManual2 extends OpMode {
         if (gamepad2.y){
             mo.servo2.setPosition(1);
         }
+        if (gamepad1.a){
+            mo.resetEncoders();
+        }
 
 
-
+        telemetry.update();
         telemetry.addData("red: ",mo.color1.red());
         telemetry.addData("blue: ",mo.color1.blue());
-        telemetry.addData("motor1: ", mo.motor1.getCurrentPosition());
-        telemetry.addData("motor2: ", mo.motor2.getCurrentPosition());
-        telemetry.addData("motor3: ", mo.motor3.getCurrentPosition());
-        telemetry.addData("motor4: ", mo.motor4.getCurrentPosition());
+        telemetry.addData("motor1: ", BL);
+        telemetry.addData("motor2: ", BR);
+        telemetry.addData("motor3: ", FL);
+        telemetry.addData("motor4: ", FR);
         telemetry.addData("clawServo: ", mo.servo1.getPosition());
         telemetry.addData("colorServo: ", mo.servo2.getPosition());
         telemetry.addData("colorArm: ", mo.motor7.getCurrentPosition());

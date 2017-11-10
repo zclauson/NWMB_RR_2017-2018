@@ -121,7 +121,7 @@ motor1  |_______________________________| motor2
 
         //color1 = colorSensor
         color1 = HM.colorSensor.get("color1");
-        color1.enableLed(false);
+        color1.enableLed(true);
     }
 
     public void shutdownAllMotors() {
@@ -143,7 +143,7 @@ motor1  |_______________________________| motor2
         motor2.setPower(motorspeed);
         motor3.setPower(motorspeed);
         motor4.setPower(motorspeed);
-        if (motor1.getCurrentPosition() > motorcount) {
+        if (Math.abs(motor1.getCurrentPosition()) > motorcount) {
             shutdownAllMotors();
             resetEncoders();
             v_state++;
