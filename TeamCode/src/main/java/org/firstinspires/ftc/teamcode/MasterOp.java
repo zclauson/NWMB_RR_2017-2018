@@ -28,6 +28,8 @@ public class MasterOp {
 
     public ColorSensor color1 = null;
 
+    public int v_state=0;
+
     public HardwareMap HM = null;
 
     /*
@@ -45,7 +47,7 @@ motor1  |_______________________________| motor2
     */
 
 
-    public int v_state;
+
 
     public void AddMotor(DcMotor m, String motorname) {
         //method for adding motor
@@ -113,7 +115,7 @@ motor1  |_______________________________| motor2
 
         //servo1=claw
         servo1 = HM.servo.get("servo1");
-        servo1.setPosition(1);
+        servo1.setPosition(.5);
 
         //servo2= colorSensorArm
         servo2 = HM.servo.get("servo2");
@@ -146,12 +148,27 @@ motor1  |_______________________________| motor2
         if (Math.abs(motor1.getCurrentPosition()) > motorcount) {
             shutdownAllMotors();
             resetEncoders();
-            v_state++;
         }
 
     }
-
-
+    public void ColorSensorBlue(){
+        if (color1.blue() > 0){
+            PowerForB(-1 , 200);
+        }
+        else if (color1.red() > 0){
+            PowerForB(1 , 200);
+        }
+    }
+    public void ColorServo (double Set){
+        servo2.setPosition(Set);
+    }
+    public void Arm(int count){
+        motor7.setPower(.2);
+        if (motor7.getCurrentPosition() > count){
+            resetEncoders();
+            shutdownAllMotors();
+        }
+    }
     public void PowerR(double motorspeed, int motorcount) {
         motor1.setPower(motorspeed);
         motor2.setPower(-motorspeed);

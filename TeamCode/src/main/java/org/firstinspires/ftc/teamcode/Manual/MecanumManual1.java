@@ -1,31 +1,29 @@
 package org.firstinspires.ftc.teamcode.Manual;
 
+import android.view.Display;
 
-import com.qualcomm.robotcore.util.Range;
-
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.teamcode.MasterOp;
 
 /**
- * Created by Zachary Clauson on 10/8/2017.
+ * Created by Zachary Clauson on 10/18/2017.
  */
-@TeleOp(name = "MecanumManual2", group = "MecanumManual2")
-@Disabled
-public class MecanumManual2 extends OpMode {
-    //instantiating MasterOp class
-    MasterOp mo= new MasterOp();
+@TeleOp(name = "MecanumManual1",group = "MecanumManual1")
+public class MecanumManual1 extends OpMode {
+
+    MasterOp mo=new MasterOp();
+
     @Override
     public void init() {
-        //initializing all the hardware
-        mo.init(hardwareMap);
+    mo.init(hardwareMap);
     }
 
     @Override
     public void loop() {
+
         /*
         Code Created by Maddie, FTC Team 4962, The Rockettes
 
@@ -74,12 +72,12 @@ public class MecanumManual2 extends OpMode {
 
         float armpower = -gamepad2.right_stick_y;
         // I switched the plus and minus signs for g1RightX
-        float  FL= -g1LeftY + g1RightX -g1RightY;
-        float  BR=  g1LeftY + g1RightX -g1RightY;
-        float  FR=  g1LeftY - g1RightX -g1RightY;
-        float  BL= -g1LeftY - g1RightX -g1RightY;
+        float  FL= -g1LeftY - g1RightX -g1RightY;
+        float  BR=  g1LeftY - g1RightX -g1RightY;
+        float  FR=  g1LeftY + g1RightX -g1RightY;
+        float  BL= -g1LeftY + g1RightX -g1RightY;
 
-        //this makes it to where the speeds cant get below -1 or above
+        //this makes it to where the speeds cant get below -1 or above 1
         Range.clip(FL,-1,1);
         Range.clip(BL,-1,1);
         Range.clip(FR,-1,1);
@@ -108,29 +106,6 @@ public class MecanumManual2 extends OpMode {
         if (gamepad1.a){
             mo.resetEncoders();
         }
-        if(gamepad2.dpad_down){
-            mo.motor5.setPower(-.4);
-            if (Math.abs(mo.motor5.getCurrentPosition())>20 && Math.abs(mo.motor5.getCurrentPosition()) < 24){
-                mo.motor5.setPower(0);
-                mo.resetEncoders();
-            }
-        }
-        if (gamepad2.dpad_left){
-            mo.motor5.setPower(.4);
-            if (mo.motor5.getCurrentPosition() > 30 && mo.motor5.getCurrentPosition()<35){
-                mo.motor5.setPower(0);
-                mo.resetEncoders();
-            }
-        }
-        if (gamepad2.dpad_up){{
-            mo.motor5.setPower(.4);
-            if (mo.motor5.getCurrentPosition() > 45 && mo.motor5.getCurrentPosition() < 55){
-                mo.motor5.setPower(0);
-                mo.resetEncoders();
-            }
-        }
-
-        }
 
 
         telemetry.update();
@@ -144,5 +119,12 @@ public class MecanumManual2 extends OpMode {
         telemetry.addData("colorServo: ", mo.servo2.getPosition());
         telemetry.addData("colorArm: ", mo.motor7.getCurrentPosition());
         telemetry.addData("armMotor: ", mo.motor5.getCurrentPosition());
+
+
+
+
+
+
+
     }
 }
